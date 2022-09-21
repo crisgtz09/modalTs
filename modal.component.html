@@ -1,1 +1,39 @@
-<p>modal works!</p>
+<ng-template #mymodal let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Capretienda</h4>
+      <button type="button" class="btn btn-outline-danger" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <form>
+        <h4>mat-select</h4>
+        <mat-form-field appearance="fill">
+          <mat-label>Favorite food</mat-label>
+          <mat-select [(ngModel)]="selectedValue" name="food">
+            <mat-option *ngFor="let food of foods" [value]="food.value">
+              {{food.viewValue}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <p> Selected food: {{selectedValue}} </p>
+        <mat-form-field appearance="fill">
+          <mat-label>Favorite car</mat-label>
+          <select matNativeControl  name="car">
+            <option value="" selected></option>
+            <option *ngFor="let car of cars" [value]="car.value">
+              {{car.viewValue}}
+            </option>
+          </select>
+        </mat-form-field>
+        <p> Selected car: {{selectedCar}} </p>
+      </form>
+        <h2>Inserte la imagen</h2>
+      <input type="file" multiple>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-primary" (click)="modal.close('Save click')">Ok</button>
+    </div>
+  </ng-template>
+  
+  <button class="btn btn-lg btn-outline-primary" (click)="open(mymodal)">Insertar Datos</button>
